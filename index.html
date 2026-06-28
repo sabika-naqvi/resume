@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabika.SYS — Syeda Sabika Fatima</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a2e;
+    --ink-soft:#2c2c44;
+    --paper:#f4f0e6;
+    --paper-dim:#e7e1d1;
+    --cyan:#00b4a6;
+    --coral:#ff5d5d;
+    --lilac:#9b87f5;
+    --line:rgba(26,26,46,.16);
+    --shadow:6px 6px 0 var(--ink);
+    --mono:"JetBrains Mono",monospace;
+    --display:"Space Grotesk",sans-serif;
+    --body:"Inter",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--paper-dim) 1px,transparent 1px),
+      linear-gradient(90deg,var(--paper-dim) 1px,transparent 1px);
+    background-size:32px 32px;
+  }
+  ::selection{background:var(--coral);color:var(--paper)}
+
+  /* ---------- BOOT SCREEN ---------- */
+  #boot{
+    position:fixed;inset:0;z-index:1000;
+    background:var(--ink);
+    color:var(--cyan);
+    font-family:var(--mono);
+    font-size:14px;
+    padding:8vh 8vw;
+    display:flex;flex-direction:column;gap:.35rem;
+    transition:opacity .6s ease,visibility .6s;
+  }
+  #boot.done{opacity:0;visibility:hidden}
+  #boot .blink{display:inline-block;width:9px;height:16px;background:var(--cyan);
+    vertical-align:middle;animation:blink 1s steps(2) infinite;margin-left:2px}
+  @keyframes blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+  #boot .ln{opacity:0;animation:ln .01s forwards}
+  @keyframes ln{to{opacity:1}}
+  #boot .ok{color:var(--lilac)}
+  #boot-skip{position:absolute;bottom:5vh;right:8vw;color:var(--paper-dim);
+    font-size:12px;opacity:.6;cursor:pointer;border:1px solid var(--paper-dim);
+    padding:.4rem .8rem;background:none;font-family:var(--mono)}
+  #boot-skip:hover{opacity:1;color:var(--coral);border-color:var(--coral)}
+
+  /* ---------- CRT TINT ---------- */
+  .crt-lines{position:fixed;inset:0;pointer-events:none;z-index:5;
+    background:repeating-linear-gradient(transparent 0 3px,rgba(26,26,46,.022) 3px 4px)}
+
+  /* ---------- TOPBAR ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--ink);color:var(--paper);
+    border-bottom:3px solid var(--ink);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:.55rem 1.2rem;font-family:var(--mono);font-size:13px;
+  }
+  .topbar .menu{display:flex;gap:1.4rem;flex-wrap:wrap}
+  .topbar .menu button{background:none;border:none;color:var(--paper);
+    font-family:var(--mono);font-size:13px;cursor:pointer;letter-spacing:.04em;
+    padding:.15rem .1rem;border-bottom:2px solid transparent;transition:.15s}
+  .topbar .menu button:hover{color:var(--cyan);border-color:var(--cyan)}
+  .topbar .clock{color:var(--cyan)}
+  .topbar .sys{font-weight:700;letter-spacing:.08em;display:flex;align-items:center;gap:.5rem}
+  .topbar .sys .dot{width:11px;height:11px;border-radius:50%;background:var(--coral);
+    box-shadow:0 0 8px var(--coral)}
+
+  /* ---------- HERO ---------- */
+  .hero{max-width:1100px;margin:0 auto;padding:6rem 1.5rem 4rem;position:relative}
+  .hero .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--cyan);margin-bottom:1.2rem;
+    display:flex;align-items:center;gap:.6rem}
+  .hero .eyebrow::before{content:"";width:34px;height:2px;background:var(--cyan)}
+  .hero h1{font-family:var(--display);font-weight:700;line-height:.92;
+    font-size:clamp(2.8rem,9vw,6.2rem);letter-spacing:-.03em;margin-bottom:.4rem}
+  .hero h1 .accent{color:var(--coral);font-style:italic}
+  .hero .role{font-family:var(--mono);font-size:clamp(1rem,2.4vw,1.4rem);
+    color:var(--ink-soft);margin-bottom:2rem}
+  .hero .role b{color:var(--lilac);font-weight:700}
+  .hero .lead{max-width:600px;font-size:1.05rem;color:var(--ink-soft)}
+
+  .hero-terminal{
+    margin-top:2.5rem;max-width:680px;
+    background:var(--ink);color:var(--cyan);
+    font-family:var(--mono);font-size:14px;
+    border:3px solid var(--ink);box-shadow:var(--shadow);
+  }
+  .hero-terminal .bar{background:var(--ink-soft);padding:.45rem .8rem;
+    display:flex;gap:.45rem;align-items:center;color:var(--paper-dim);font-size:11px}
+  .hero-terminal .bar .b{width:11px;height:11px;border-radius:50%}
+  .hero-terminal .bar .b1{background:var(--coral)}
+  .hero-terminal .bar .b2{background:var(--lilac)}
+  .hero-terminal .bar .b3{background:var(--cyan)}
+  .hero-terminal .bar span{margin-left:auto}
+  .hero-terminal .screen{padding:1.1rem 1.2rem;min-height:118px}
+  .hero-terminal .prompt{color:var(--lilac)}
+  .hero-terminal .out{color:var(--paper);display:block;margin:.2rem 0 .6rem}
+  .hero-terminal .cur{display:inline-block;width:8px;height:15px;
+    background:var(--cyan);vertical-align:middle;animation:blink 1s steps(2) infinite}
+
+  .contact-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.2rem}
+  .chip{font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--ink);
+    background:var(--paper);border:2px solid var(--ink);padding:.5rem .9rem;
+    box-shadow:3px 3px 0 var(--ink);transition:.12s;display:inline-flex;gap:.4rem;align-items:center}
+  .chip:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--coral)}
+  .chip:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+
+  /* ---------- SECTION SHELL ---------- */
+  .section{max-width:1100px;margin:0 auto;padding:3.5rem 1.5rem}
+  .sec-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;
+    border-bottom:3px solid var(--ink);padding-bottom:.8rem}
+  .sec-head .num{font-family:var(--mono);font-size:13px;color:var(--coral);font-weight:700}
+  .sec-head h2{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,4vw,2.6rem);
+    letter-spacing:-.02em}
+  .sec-head .tag{margin-left:auto;font-family:var(--mono);font-size:12px;
+    color:var(--ink-soft);align-self:center}
+
+  /* ---------- WINDOW CARDS ---------- */
+  .win{background:var(--paper);border:3px solid var(--ink);box-shadow:var(--shadow);
+    margin-bottom:1.6rem}
+  .win .titlebar{background:var(--ink);color:var(--paper);font-family:var(--mono);
+    font-size:13px;padding:.5rem .8rem;display:flex;align-items:center;gap:.6rem;cursor:default}
+  .win .titlebar .lights{display:flex;gap:.35rem}
+  .win .titlebar .lights i{width:10px;height:10px;border-radius:50%;display:block}
+  .win .titlebar .lights .l1{background:var(--coral)}
+  .win .titlebar .lights .l2{background:var(--lilac)}
+  .win .titlebar .lights .l3{background:var(--cyan)}
+  .win .titlebar .t{font-weight:700;letter-spacing:.03em}
+  .win .titlebar .meta{margin-left:auto;color:var(--cyan);font-size:11px}
+  .win .body{padding:1.3rem 1.4rem}
+
+  .job-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;margin-bottom:.2rem}
+  .job-h .pos{font-family:var(--display);font-weight:600;font-size:1.2rem}
+  .job-h .co{font-family:var(--mono);font-size:.95rem;color:var(--cyan)}
+  .job-h .dt{margin-left:auto;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+  .win ul{list-style:none;margin-top:.8rem;display:grid;gap:.55rem}
+  .win ul li{padding-left:1.5rem;position:relative;font-size:.97rem;color:var(--ink-soft)}
+  .win ul li::before{content:"▸";position:absolute;left:0;color:var(--coral);font-size:.9rem}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+  .skill-cat{border:3px solid var(--ink);box-shadow:var(--shadow);background:var(--paper)}
+  .skill-cat h3{font-family:var(--mono);font-size:.85rem;letter-spacing:.05em;
+    text-transform:uppercase;background:var(--lilac);color:var(--ink);
+    padding:.6rem .8rem;border-bottom:3px solid var(--ink);font-weight:700}
+  .skill-cat .tags{padding:.9rem;display:flex;flex-wrap:wrap;gap:.45rem}
+  .skill-cat .tags span{font-family:var(--mono);font-size:.78rem;border:1.5px solid var(--ink);
+    padding:.25rem .55rem;background:var(--paper);transition:.12s;cursor:default}
+  .skill-cat .tags span:hover{background:var(--ink);color:var(--cyan)}
+
+  /* ---------- EDUCATION / HONORS ---------- */
+  .edu-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem;margin-bottom:.4rem}
+  .edu-top .deg{font-family:var(--display);font-weight:600;font-size:1.25rem}
+  .edu-top .uni{font-family:var(--mono);color:var(--cyan);font-size:.95rem}
+  .edu-top .dt{margin-left:auto;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+  .edu-sub{font-family:var(--mono);font-size:.85rem;color:var(--ink-soft);margin-bottom:1rem}
+  .honor{border-left:3px solid var(--coral);padding:.2rem 0 .2rem 1rem;margin:1rem 0}
+  .honor .badge{font-family:var(--mono);font-size:.72rem;font-weight:700;
+    background:var(--coral);color:var(--paper);padding:.15rem .5rem;display:inline-block;margin-bottom:.3rem}
+  .honor .badge.hd{background:var(--cyan);color:var(--ink)}
+  .honor .badge.bp{background:var(--lilac);color:var(--ink)}
+  .honor p{font-size:.95rem;color:var(--ink-soft)}
+  .honor .code{font-family:var(--mono);font-weight:700;color:var(--ink)}
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.3rem}
+  .proj{border:3px solid var(--ink);box-shadow:var(--shadow);background:var(--paper);
+    padding:0;overflow:hidden;transition:.15s;cursor:default}
+  .proj:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--lilac)}
+  .proj .ph{background:var(--ink);color:var(--paper);padding:.7rem .9rem;
+    font-family:var(--mono);font-size:.95rem;font-weight:700;display:flex;
+    justify-content:space-between;align-items:center}
+  .proj .ph .ext{color:var(--cyan);font-size:.72rem;font-weight:400}
+  .proj .pb{padding:1rem .9rem;font-size:.92rem;color:var(--ink-soft)}
+
+  /* ---------- LEADERSHIP ---------- */
+  .lead-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1.5px dashed var(--line)}
+  .lead-item:last-child{border-bottom:none}
+  .lead-item .ic{font-family:var(--mono);font-weight:700;color:var(--coral);
+    font-size:.85rem;min-width:42px}
+  .lead-item .lc .r{font-family:var(--display);font-weight:600;font-size:1.05rem}
+  .lead-item .lc .o{font-family:var(--mono);font-size:.85rem;color:var(--cyan);margin-bottom:.3rem}
+  .lead-item .lc p{font-size:.93rem;color:var(--ink-soft)}
+  .lead-item .lc .dt{font-family:var(--mono);font-size:.75rem;color:var(--ink-soft)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:var(--paper);margin-top:4rem;
+    padding:3rem 1.5rem;text-align:center}
+  footer .fnote{font-family:var(--mono);font-size:.85rem;color:var(--cyan);margin-bottom:1.2rem}
+  footer h3{font-family:var(--display);font-size:clamp(1.6rem,5vw,2.6rem);
+    font-weight:700;margin-bottom:1.5rem;letter-spacing:-.02em}
+  footer .chip{background:var(--ink-soft);color:var(--paper);border-color:var(--paper);
+    box-shadow:3px 3px 0 var(--cyan)}
+  footer .chip:hover{box-shadow:5px 5px 0 var(--coral)}
+  footer .frow{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
+  footer .vis{margin-top:2rem;font-family:var(--mono);font-size:.78rem;color:var(--paper-dim);opacity:.7}
+
+  @media (max-width:640px){
+    .topbar .menu{display:none}
+    .hero{padding-top:3.5rem}
+    .sec-head .tag{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    #boot{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- BOOT -->
+<div id="boot">
+  <div id="boot-log"></div>
+  <button id="boot-skip">[ skip ]</button>
+</div>
+<div class="crt-lines"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="sys"><span class="dot"></span> SABIKA.SYS</div>
+  <nav class="menu">
+    <button data-go="about">about</button>
+    <button data-go="skills">skills</button>
+    <button data-go="experience">experience</button>
+    <button data-go="education">education</button>
+    <button data-go="projects">projects</button>
+    <button data-go="leadership">leadership</button>
+  </nav>
+  <div class="clock" id="clock">--:--</div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="about">
+  <div class="eyebrow">System ready · user authenticated</div>
+  <h1>Syeda Sabika<br><span class="accent">Fatima</span></h1>
+  <p class="role">// <b>Data Analyst</b> + Computer Science graduate</p>
+  <p class="lead">I dig through large, messy datasets to surface the trends, insights, and data-quality issues that decisions actually depend on — then turn the technical findings into reports and dashboards anyone can read.</p>
+
+  <div class="hero-terminal">
+    <div class="bar"><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i> sabika@analytics ~ <span>bash</span></div>
+    <div class="screen">
+      <span class="prompt">$ </span><span id="typed"></span><span class="cur"></span>
+      <span class="out" id="typed-out"></span>
+    </div>
+  </div>
+
+  <div class="contact-row">
+    <a class="chip" href="mailto:sabika.fatima.n@gmail.com">✉ sabika.fatima.n@gmail.com</a>
+    <a class="chip" href="tel:+61491878034">☎ +61 491 878 034</a>
+    <a class="chip" href="https://linkedin.com/in/sabika-naqvi-111b47216" target="_blank" rel="noopener">in · linkedin</a>
+    <a class="chip" href="https://github.com/sabika-naqvi" target="_blank" rel="noopener">‹/› github</a>
+  </div>
+</header>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="sec-head"><span class="num">01</span><h2>Skills</h2><span class="tag">// installed_packages</span></div>
+  <div class="skill-grid">
+    <div class="skill-cat">
+      <h3>Data Analysis &amp; Reporting</h3>
+      <div class="tags">
+        <span>SQL</span><span>Power BI</span><span>Advanced Excel</span><span>Python</span>
+        <span>R</span><span>Pandas</span><span>Data viz</span><span>Dashboards</span><span>Statistical analysis</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Data Quality &amp; Governance</h3>
+      <div class="tags">
+        <span>Data validation</span><span>Data cleaning</span><span>Quality checks</span>
+        <span>Data integrity</span><span>Large-dataset analysis</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Enterprise &amp; Tools</h3>
+      <div class="tags">
+        <span>Salesforce CRM</span><span>Copilot Studio</span><span>REST APIs</span>
+        <span>Hadoop</span><span>Git</span><span>RStudio</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Delivery &amp; Professional</h3>
+      <div class="tags">
+        <span>Agile</span><span>Requirements analysis</span><span>Stakeholder engagement</span>
+        <span>Problem solving</span><span>Communication</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="sec-head"><span class="num">02</span><h2>Experience</h2><span class="tag">// process_log</span></div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">intern.exe</span><span class="meta">RUNNING</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Intern</span><span class="co">Arinum Solutions · Sydney</span><span class="dt">Oct 2025 – Dec 2025</span></div>
+      <ul>
+        <li>Analysed enterprise CRM and workflow data within Salesforce to spot optimisation opportunities, contributing evidence-based recommendations to decision-making.</li>
+        <li>Worked with developers, application owners, and stakeholders to validate requirements and data, translating business needs into clear, integrated solutions.</li>
+        <li>Supported delivery of an automated document-recognition solution for James Cook University using Microsoft Copilot Studio and REST APIs.</li>
+        <li>Operated across shifting project requirements and enterprise systems, building a practical grasp of governance and process constraints in Agile delivery.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">data_intern.exe</span><span class="meta">EXIT 0</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Data Analytics Intern</span><span class="co">Linked Things · Karachi</span><span class="dt">Jul 2021 – Aug 2021</span></div>
+      <ul>
+        <li>Independently built an algorithm to estimate refrigeration-system capacity from large operational datasets (power and temperature), applying physics domain knowledge — deployed at the client's site.</li>
+        <li>Ran data-quality checks and statistical techniques to find inefficiencies, delivering evidence-based insights to engineering stakeholders.</li>
+        <li>Used dashboards to monitor system performance across projects and communicate findings to technical teams.</li>
+        <li>Collaborated with engineering teams to validate data, resolve issues, and report against agreed quality standards.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">retail.exe</span><span class="meta">RUNNING</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Retail Team Member</span><span class="co">Coles Local · Sydney</span><span class="dt">Oct 2023 – Present</span></div>
+      <ul>
+        <li>Delivered customer-focused service to 100+ customers daily with clear communication and responsive problem solving.</li>
+        <li>Adapted quickly to changing operational requirements, showing learning agility and reliable teamwork.</li>
+        <li>Supported onboarding and training of new team members, improving collaboration and efficiency.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="sec-head"><span class="num">03</span><h2>Education</h2><span class="tag">// root_install</span></div>
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">degree.dmg</span><span class="meta">VERIFIED</span></div>
+    <div class="body">
+      <div class="edu-top"><span class="deg">Bachelor of Science</span><span class="uni">University of Sydney</span><span class="dt">Feb 2021 – Oct 2025</span></div>
+      <div class="edu-sub">Major: Computer Science · Minor: Business Management</div>
+
+      <div class="honor">
+        <span class="badge hd">High Distinction</span>
+        <p><span class="code">COMP3888</span> — Co-developed a hybrid LLM + Domain-Specific Language system in Python to tackle the ARC-AGI abstract-reasoning benchmark, evaluated across 400 tasks for a Duke University research client.</p>
+      </div>
+      <div class="honor">
+        <span class="badge hd">High Distinction</span>
+        <p><span class="code">OLET2610</span> — Built foundational quantum-computing knowledge, constructing quantum circuits with Qiskit in Python.</p>
+      </div>
+      <div class="honor">
+        <span class="badge bp">Best Project</span>
+        <p><span class="code">QBUS3350</span> — Designed a sustainable data-centre solution for Microsoft using PERT, resource scheduling, and cost–time analysis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="sec-head"><span class="num">04</span><h2>Projects</h2><span class="tag">// /usr/local/bin</span></div>
+  <div class="proj-grid">
+    <div class="proj">
+      <div class="ph">Atlassian Classifier <span class="ext">.nlp</span></div>
+      <div class="pb">NLP system to auto-classify Jira tickets, improving triage efficiency and cutting manual workload. Cleaning, analysing, and preparing a Hadoop dataset for model training.</div>
+    </div>
+    <div class="proj">
+      <div class="ph">AI-powered Validator <span class="ext">.api</span></div>
+      <div class="pb">Document validation tool integrating Oracle Service Cloud with Microsoft Copilot via REST APIs to identify TFN forms and streamline verification.</div>
+    </div>
+    <div class="proj">
+      <div class="ph">ARC-AGI Benchmark <span class="ext">.research</span></div>
+      <div class="pb">Hybrid LLM + DSL approach to abstract reasoning for a Duke University client. Integrated Google Gemini via API, evaluated against 400 ARC tasks on AWS GPUs; delivered client-ready docs and weekly presentations. Agile/XP, Bitbucket.</div>
+    </div>
+    <div class="proj">
+      <div class="ph">ML Classifier Eval <span class="ext">.ipynb</span></div>
+      <div class="pb">Implemented and evaluated Naive Bayes, kNN, and ensemble models using cross-validation and statistical testing to improve predictive accuracy.</div>
+    </div>
+    <div class="proj">
+      <div class="ph">Colour Transformation <span class="ext">.search</span></div>
+      <div class="pb">Designed and benchmarked BFS, DFS, A*, and Hill Climbing to compute valid state-transformation paths — structured decomposition and algorithmic trade-off analysis.</div>
+    </div>
+    <div class="proj">
+      <div class="ph">Palate <span class="ext">.app</span></div>
+      <div class="pb">Full-stack nutrition app with persistent data and a responsive interface.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section" id="leadership">
+  <div class="sec-head"><span class="num">05</span><h2>Leadership &amp; Extracurriculars</h2><span class="tag">// background_tasks</span></div>
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">community.log</span><span class="meta">ACTIVE</span></div>
+    <div class="body">
+      <div class="lead-item">
+        <span class="ic">[01]</span>
+        <div class="lc">
+          <div class="r">Tutor</div>
+          <div class="o">Girls' Programming Network · Sydney</div>
+          <p>Tutored groups of 20–25 students, translating complex technical concepts into clear, accessible explanations. Led collaborative workshops for 100+ participants, promoting teamwork, inclusion, and accountability.</p>
+          <div class="dt">Mar 2024 – Present</div>
+        </div>
+      </div>
+      <div class="lead-item">
+        <span class="ic">[02]</span>
+        <div class="lc">
+          <div class="r">Events Sub-Committee</div>
+          <div class="o">Women in Technology Society · USYD</div>
+          <p>Planned and coordinated student-focused industry events; represented the Society at Founders' Hack, expanding professional networks with industry stakeholders.</p>
+          <div class="dt">Jan 2025 – Jun 2025</div>
+        </div>
+      </div>
+      <div class="lead-item">
+        <span class="ic">[03]</span>
+        <div class="lc">
+          <div class="r">Participant</div>
+          <div class="o">Network of Women · USYD</div>
+          <p>Built leadership and professional capability through structured mentorship programs and networking with senior industry professionals.</p>
+        </div>
+      </div>
+      <div class="lead-item">
+        <span class="ic">[04]</span>
+        <div class="lc">
+          <div class="r">Participant — Coding Fest</div>
+          <div class="o">Macquarie Challenge · Sydney</div>
+          <p>Developed practical data and tech solutions under time pressure in a collaborative team, working with Spring Framework, microservices, APIs, and containerization.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fnote">// EOF · process complete</div>
+  <h3>Let's build something.</h3>
+  <div class="frow">
+    <a class="chip" href="mailto:sabika.fatima.n@gmail.com">✉ Email me</a>
+    <a class="chip" href="https://linkedin.com/in/sabika-naqvi-111b47216" target="_blank" rel="noopener">in · LinkedIn</a>
+    <a class="chip" href="https://github.com/sabika-naqvi" target="_blank" rel="noopener">‹/› GitHub</a>
+  </div>
+  <p class="vis">Australian work rights held independently — no visa sponsorship required.</p>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* CLOCK */
+  function tick(){
+    var d=new Date();
+    var h=String(d.getHours()).padStart(2,'0');
+    var m=String(d.getMinutes()).padStart(2,'0');
+    var s=String(d.getSeconds()).padStart(2,'0');
+    var el=document.getElementById('clock');
+    if(el) el.textContent=h+':'+m+':'+s;
+  }
+  tick(); setInterval(tick,1000);
+
+  /* NAV */
+  document.querySelectorAll('.menu button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=document.getElementById(b.dataset.go);
+      if(t) t.scrollIntoView({behavior:reduce?'auto':'smooth'});
+    });
+  });
+
+  /* BOOT SEQUENCE */
+  var boot=document.getElementById('boot');
+  var log=document.getElementById('boot-log');
+  var lines=[
+    'SABIKA.SYS v25.10 — booting...',
+    'loading modules: [sql] [power-bi] [python] [r] ........ OK',
+    'mounting /datasets ........ OK',
+    'verifying credentials: B.Sc Computer Science, USYD ........ <span class="ok">OK</span>',
+    'initialising analytics engine ........ OK',
+    'data integrity check ........ <span class="ok">PASSED</span>',
+    'launching profile <span class="ok">// Syeda Sabika Fatima</span>',
+    'ready_'
+  ];
+  function endBoot(){ if(boot && !boot.classList.contains('done')){boot.classList.add('done');} }
+  document.getElementById('boot-skip').addEventListener('click',endBoot);
+
+  if(reduce){ endBoot(); }
+  else {
+    var i=0;
+    (function next(){
+      if(i>=lines.length){ setTimeout(endBoot,650); return; }
+      var div=document.createElement('div');
+      div.className='ln';
+      div.innerHTML=(i===lines.length-1?'<span class="blink"></span> ':'> ')+lines[i];
+      log.appendChild(div);
+      i++;
+      setTimeout(next,300+Math.random()*220);
+    })();
+  }
+
+  /* HERO TYPING */
+  var cmd='whoami --verbose';
+  var out='Data analyst who turns complex datasets into clear, decision-ready stories.';
+  var typedEl=document.getElementById('typed');
+  var outEl=document.getElementById('typed-out');
+  function typeCmd(){
+    if(reduce){ typedEl.textContent=cmd; outEl.textContent=out; return; }
+    var c=0;
+    var t=setInterval(function(){
+      typedEl.textContent=cmd.slice(0,c++);
+      if(c>cmd.length){ clearInterval(t); setTimeout(typeOut,400); }
+    },70);
+  }
+  function typeOut(){
+    var c=0;
+    var t=setInterval(function(){
+      outEl.textContent=out.slice(0,c++);
+      if(c>out.length) clearInterval(t);
+    },22);
+  }
+  // start typing once boot is mostly done
+  setTimeout(typeCmd, reduce?0:2900);
+
+  /* SCROLL REVEAL */
+  if(!reduce && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.style.opacity=1;
+          e.target.style.transform='none';
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.win,.skill-cat,.proj').forEach(function(el){
+      el.style.opacity=0;
+      el.style.transform='translateY(22px)';
+      el.style.transition='opacity .5s ease, transform .5s ease';
+      io.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>
