@@ -189,6 +189,20 @@
     justify-content:space-between;align-items:center}
   .proj .ph .ext{color:var(--cyan);font-size:.72rem;font-weight:400}
   .proj .pb{padding:1rem .9rem;font-size:.92rem;color:var(--ink-soft)}
+  .proj .stack{padding:0 .9rem 1rem;display:flex;flex-wrap:wrap;gap:.35rem}
+  .proj .stack span{font-family:var(--mono);font-size:.7rem;border:1.5px solid var(--line);
+    padding:.15rem .45rem;color:var(--ink-soft)}
+  .proj .plink{display:inline-block;margin-top:.7rem;color:var(--cyan);font-weight:700;
+    font-family:var(--mono);font-size:.82rem;text-decoration:underline}
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.2rem}
+  .cert{border:3px solid var(--ink);background:var(--paper);box-shadow:3px 3px 0 var(--ink);padding:.9rem}
+  .cert .st{font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.06em;
+    background:var(--ink);color:var(--cyan);padding:.15rem .45rem;display:inline-block;margin-bottom:.45rem}
+  .cert .st.wip{background:var(--coral);color:var(--paper)}
+  .cert .nm{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.3}
+  .cert .by{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);margin-top:.2rem}
 
   /* ---------- LEADERSHIP ---------- */
   .lead-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1.5px dashed var(--line)}
@@ -237,10 +251,10 @@
   <div class="sys"><span class="dot"></span> SABIKA.SYS</div>
   <nav class="menu">
     <button data-go="about">about</button>
-    <button data-go="skills">skills</button>
-    <button data-go="experience">experience</button>
     <button data-go="education">education</button>
     <button data-go="projects">projects</button>
+    <button data-go="experience">experience</button>
+    <button data-go="skills">skills</button>
     <button data-go="leadership">leadership</button>
   </nav>
   <div class="clock" id="clock">--:--</div>
@@ -250,8 +264,8 @@
 <header class="hero" id="about">
   <div class="eyebrow">System ready · user authenticated</div>
   <h1>Syeda Sabika<br><span class="accent">Fatima</span></h1>
-  <p class="role">// <b>Data Analyst</b> + Computer Science graduate</p>
-  <p class="lead">I dig through large, messy datasets to surface the trends, insights, and data-quality issues that decisions actually depend on — then turn the technical findings into reports and dashboards anyone can read.</p>
+  <p class="role">// <b>Data &amp; AI Analyst</b> + Computer Science graduate</p>
+  <p class="lead">I dig through large, messy datasets to surface the trends, insights, and data-quality issues that decisions actually depend on, then turn the technical findings into reports and dashboards anyone can read. Lately I build the controls too: pipelines that reconcile to zero variance, anomaly checks that flag what deserves a second look, and governance tooling that keeps AI spend and behaviour auditable.</p>
 
   <div class="hero-terminal">
     <div class="bar"><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i> sabika@analytics ~ <span>bash</span></div>
@@ -269,97 +283,9 @@
   </div>
 </header>
 
-<!-- SKILLS -->
-<section class="section" id="skills">
-  <div class="sec-head"><span class="num">01</span><h2>Skills</h2><span class="tag">// installed_packages</span></div>
-  <div class="skill-grid">
-    <div class="skill-cat">
-      <h3>Data Analysis &amp; Reporting</h3>
-      <div class="tags">
-        <span>SQL</span><span>Power BI</span><span>Tableau</span><span>Advanced Excel</span><span>Python</span>
-        <span>R</span><span>Pandas</span><span>Data viz</span><span>Dashboards</span><span>Statistical analysis</span>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <h3>Data Quality &amp; Governance</h3>
-      <div class="tags">
-        <span>Data validation</span><span>Data cleaning</span><span>Quality checks</span>
-        <span>Data integrity</span><span>Large-dataset analysis</span>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <h3>Enterprise &amp; Tools</h3>
-      <div class="tags">
-        <span>Salesforce CRM</span><span>Copilot Studio</span><span>REST APIs</span>
-        <span>Hadoop</span><span>Git</span><span>RStudio</span>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <h3>Delivery &amp; Professional</h3>
-      <div class="tags">
-        <span>Agile</span><span>Requirements analysis</span><span>Stakeholder engagement</span>
-        <span>Problem solving</span><span>Communication</span>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <h3>Programming Languages</h3>
-      <div class="tags">
-        <span>C</span><span>Python</span><span>Java</span><span>JavaScript</span><span>Python</span>
-        <span>HTML</span><span>CSS</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="section" id="experience">
-  <div class="sec-head"><span class="num">02</span><h2>Experience</h2><span class="tag">// process_log</span></div>
-
-  <div class="win">
-    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
-      <span class="t">intern.exe</span><span class="meta">RUNNING</span></div>
-    <div class="body">
-      <div class="job-h"><span class="pos">Intern</span><span class="co">Arinum Solutions · Sydney</span><span class="dt">Oct 2025 – Dec 2025</span></div>
-      <ul>
-        <li>Analysed enterprise CRM and workflow data within Salesforce to spot optimisation opportunities, contributing evidence-based recommendations to decision-making.</li>
-        <li>Worked with developers, application owners, and stakeholders to validate requirements and data, translating business needs into clear, integrated solutions.</li>
-        <li>Supported delivery of an automated document-recognition solution for James Cook University using Microsoft Copilot Studio and REST APIs.</li>
-        <li>Operated across shifting project requirements and enterprise systems, building a practical grasp of governance and process constraints in Agile delivery.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="win">
-    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
-      <span class="t">data_intern.exe</span><span class="meta">EXIT 0</span></div>
-    <div class="body">
-      <div class="job-h"><span class="pos">Data Analytics Intern</span><span class="co">Linked Things · Karachi</span><span class="dt">Jul 2021 – Aug 2021</span></div>
-      <ul>
-        <li>Independently built an algorithm to estimate refrigeration-system capacity from large operational datasets (power and temperature), applying physics domain knowledge — deployed at the client's site.</li>
-        <li>Ran data-quality checks and statistical techniques to find inefficiencies, delivering evidence-based insights to engineering stakeholders.</li>
-        <li>Used dashboards to monitor system performance across projects and communicate findings to technical teams.</li>
-        <li>Collaborated with engineering teams to validate data, resolve issues, and report against agreed quality standards.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="win">
-    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
-      <span class="t">retail.exe</span><span class="meta">RUNNING</span></div>
-    <div class="body">
-      <div class="job-h"><span class="pos">Retail Team Member</span><span class="co">Coles Local · Sydney</span><span class="dt">Oct 2023 – Present</span></div>
-      <ul>
-        <li>Delivered customer-focused service to 100+ customers daily with clear communication and responsive problem solving.</li>
-        <li>Adapted quickly to changing operational requirements, showing learning agility and reliable teamwork.</li>
-        <li>Supported onboarding and training of new team members, improving collaboration and efficiency.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- EDUCATION -->
 <section class="section" id="education">
-  <div class="sec-head"><span class="num">03</span><h2>Education</h2><span class="tag">// root_install</span></div>
+  <div class="sec-head"><span class="num">01</span><h2>Education</h2><span class="tag">// root_install</span></div>
   <div class="win">
     <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
       <span class="t">degree.dmg</span><span class="meta">VERIFIED</span></div>
@@ -381,40 +307,260 @@
       </div>
     </div>
   </div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">prof_year.pkg</span><span class="meta">INSTALLING</span></div>
+    <div class="body">
+      <div class="edu-top"><span class="deg">Professional Year Program</span><span class="uni">Information Technology</span><span class="dt">In progress</span></div>
+      <div class="edu-sub">Australian workplace practice · professional communication · industry placement</div>
+      <ul>
+        <li>Structured program covering Australian business culture, workplace communication, and professional ethics for IT graduates.</li>
+        <li>Includes a supervised industry internship placement alongside coursework.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HIDDEN: certifications list — uncomment to restore
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">certifications.list</span><span class="meta">3 ENTRIES</span></div>
+    <div class="body">
+      <div class="certs">
+        <div class="cert">
+          <span class="st wip">IN PROGRESS</span>
+          <div class="nm">AWS Certified AI Practitioner</div>
+          <div class="by">Amazon Web Services · AIF-C01</div>
+        </div>
+        <div class="cert">
+          <span class="st">COMPLETED</span>
+          <div class="nm">Quantum Computing Fundamentals</div>
+          <div class="by">University of Sydney · OLET2610 · High Distinction</div>
+        </div>
+        <div class="cert">
+          <span class="st">SELECTED</span>
+          <div class="nm">Apple Developer Academy, Naples</div>
+          <div class="by">Offer received · declined to build a career in Australia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
 </section>
 
 <!-- PROJECTS -->
 <section class="section" id="projects">
-  <div class="sec-head"><span class="num">04</span><h2>Projects</h2><span class="tag">// /usr/local/bin</span></div>
+  <div class="sec-head"><span class="num">02</span><h2>Projects</h2><span class="tag">// /usr/local/bin</span></div>
   <div class="proj-grid">
     <div class="proj">
-      <div class="ph">Atlassian Classifier <span class="ext">.nlp</span></div>
-      <div class="pb">NLP system to auto-classify Jira tickets, improving triage efficiency and cutting manual workload. Cleaning, analysing, and preparing a Hadoop dataset for model training.</div>
+      <div class="ph">Tollgate <span class="ext">.gateway</span></div>
+      <div class="pb">AI cost governance gateway sitting between an organisation and its LLM providers. Every request passes a policy layer that meters token spend per team and model, enforces budget limits, and writes an immutable audit log of who called what, when, and at what cost. FastAPI policy engine, DuckDB analytics store for fast aggregation over request history, and a dependency-free dashboard for spend breakdowns and limit breaches.</div>
+      <div class="stack"><span>FastAPI</span><span>DuckDB</span><span>Python</span><span>Vanilla JS</span><span>REST</span><span>Audit logging</span></div>
+    </div>
+    <div class="proj">
+      <div class="ph">Book Recommender <span class="ext">.ml</span></div>
+      <div class="pb">User-based collaborative filtering on the Book-Crossing dataset: 433K ratings across 77K users and 185K books, 99.99% sparse. Cosine similarity with mean-centering, evaluated by leave-one-out Precision@K. Parquet caching cut load time 17x. Shipped as a Streamlit app with tunable parameters.</div>
+      <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Streamlit</span><span>Parquet</span><span>Collaborative filtering</span></div>
     </div>
     <div class="proj">
       <div class="ph">NSW Contract Analysis <span class="ext">.pipeline</span></div>
       <div class="pb">Built an end-to-end analytics pipeline on open NSW eTendering data. Cleaned and documented messy multi-table data in Python, modelled a verified SQL star schema with zero-variance reconciliation checks, and ran anomaly analysis. Delivered a published interactive Tableau dashboard with a Gemini-powered AI anomaly-review layer generating plain-English audit explanations for review.
-      <a href="https://public.tableau.com/app/profile/sabika.fatima/viz/NSWGovernmentContractSpendingAnalysis/NSWAwardsDashboard?publish=yes" target="_blank" rel="noopener" style="display:inline-block;margin-top:.7rem;color:var(--cyan);font-weight:700;text-decoration:underline">View dashboard →</a></div>
+      <a class="plink" href="https://public.tableau.com/app/profile/sabika.fatima/viz/NSWGovernmentContractSpendingAnalysis/NSWAwardsDashboard?publish=yes" target="_blank" rel="noopener">View dashboard →</a></div>
+      <div class="stack"><span>Python</span><span>SQL</span><span>DuckDB</span><span>Tableau</span><span>Gemini API</span></div>
     </div>
     <div class="proj">
-      <div class="ph">AI-powered Validator <span class="ext">.api</span></div>
-      <div class="pb">Document validation tool integrating Oracle Service Cloud with Microsoft Copilot via REST APIs to identify TFN forms and streamline verification.</div>
+      <div class="ph">Atlassian Classifier <span class="ext">.nlp</span></div>
+      <div class="pb">NLP system to auto-classify Jira tickets, improving triage efficiency and cutting manual workload. Cleaning, analysing, and preparing a Hadoop dataset for model training.</div>
+      <div class="stack"><span>Python</span><span>NLP</span><span>Hadoop</span></div>
     </div>
     <div class="proj">
       <div class="ph">ARC-AGI Benchmark <span class="ext">.research</span></div>
-      <div class="pb">Hybrid LLM + DSL approach to abstract reasoning for a Duke University client. Integrated Google Gemini via API, evaluated against 400 ARC tasks on AWS GPUs; delivered client-ready docs and weekly presentations. Agile/XP, Bitbucket.</div>
-    </div>
-    <div class="proj">
-      <div class="ph">ML Classifier Eval <span class="ext">.ipynb</span></div>
-      <div class="pb">Implemented and evaluated Naive Bayes, kNN, and ensemble models using cross-validation and statistical testing to improve predictive accuracy.</div>
-    </div>
-    <div class="proj">
-      <div class="ph">Colour Transformation <span class="ext">.search</span></div>
-      <div class="pb">Designed and benchmarked BFS, DFS, A*, and Hill Climbing to compute valid state-transformation paths — structured decomposition and algorithmic trade-off analysis.</div>
+      <div class="pb">Hybrid LLM + DSL approach to abstract reasoning for a Duke University client. Integrated Google Gemini via API, evaluated against 400 ARC tasks on AWS GPUs; delivered client-ready docs and weekly presentations to the research sponsor. Four-person team running Agile/XP on Bitbucket. Awarded a High Distinction.</div>
+      <div class="stack"><span>Python</span><span>Gemini API</span><span>AWS</span><span>DSL design</span><span>Agile/XP</span></div>
     </div>
     <div class="proj">
       <div class="ph">Palate <span class="ext">.app</span></div>
-      <div class="pb">Full-stack nutrition app with persistent data and a responsive interface.</div>
+      <div class="pb">Full-stack nutrition tracking app. React and Vite front end with a responsive interface and persistent storage, plus a Google Gemini API layer that turns free-text meal descriptions into structured nutrition data instead of making people search a food database.</div>
+      <div class="stack"><span>React</span><span>Vite</span><span>Gemini API</span><span>JavaScript</span></div>
+    </div>
+    <!-- HIDDEN: Sustainable Data Centre — uncomment to restore
+    <div class="proj">
+      <div class="ph">Sustainable Data Centre <span class="ext">.plan</span></div>
+      <div class="pb">Designed a sustainable data-centre delivery plan for Microsoft as the client, using PERT, resource scheduling, and cost–time trade-off analysis to model the critical path and crash options. Awarded Best Project in the cohort.</div>
+      <div class="stack"><span>PERT</span><span>Resource scheduling</span><span>Cost–time analysis</span></div>
+    </div>
+    -->
+    <div class="proj">
+      <div class="ph">AI-powered Validator <span class="ext">.api</span></div>
+      <div class="pb">Document validation tool integrating Oracle Service Cloud with Microsoft Copilot via REST APIs to identify TFN forms and streamline verification.</div>
+      <div class="stack"><span>Copilot Studio</span><span>Oracle Service Cloud</span><span>REST APIs</span></div>
+    </div>
+    <!-- HIDDEN: ML Classifier Eval — uncomment to restore
+    <div class="proj">
+      <div class="ph">ML Classifier Eval <span class="ext">.ipynb</span></div>
+      <div class="pb">Implemented and evaluated Naive Bayes, kNN, and ensemble models using cross-validation and statistical testing to improve predictive accuracy.</div>
+      <div class="stack"><span>Python</span><span>scikit-learn</span><span>Cross-validation</span></div>
+    </div>
+    -->
+    <!-- HIDDEN: Colour Transformation — uncomment to restore
+    <div class="proj">
+      <div class="ph">Colour Transformation <span class="ext">.search</span></div>
+      <div class="pb">Designed and benchmarked BFS, DFS, A*, and Hill Climbing to compute valid state-transformation paths — structured decomposition and algorithmic trade-off analysis.</div>
+      <div class="stack"><span>Python</span><span>Search algorithms</span><span>Benchmarking</span></div>
+    </div>
+    -->
+    <div class="proj">
+      <div class="ph">XXL Chess <span class="ext">.java</span></div>
+      <div class="pb">Engineered a 14x14 chess game in Java with Gradle, extending standard rules to a larger board. Built a computer opponent that evaluates and selects moves, and designed the interface for immersive play. A workout in object-oriented design and clean logic structuring across a large rule set.</div>
+      <div class="stack"><span>Java</span><span>Gradle</span><span>OOP</span><span>Game AI</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="sec-head"><span class="num">03</span><h2>Experience</h2><span class="tag">// process_log</span></div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">intern.exe</span><span class="meta">RUNNING</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Intern</span><span class="co">Arinum Solutions · Sydney</span><span class="dt">Oct 2025 – Dec 2025</span></div>
+      <ul>
+        <li>Analysed enterprise CRM and workflow data within Salesforce to spot optimisation opportunities, contributing evidence-based recommendations to decision-making.</li>
+        <li>Worked with developers, application owners, and stakeholders to validate requirements and data, translating business needs into clear, integrated solutions.</li>
+        <li>Supported delivery of an automated document-recognition solution for James Cook University using Microsoft Copilot Studio and REST APIs.</li>
+        <li>Operated across shifting project requirements and enterprise systems, building a practical grasp of governance and process constraints in Agile delivery.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">retail.exe</span><span class="meta">RUNNING</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Retail Team Member</span><span class="co">Coles Local · Sydney</span><span class="dt">Oct 2023 – Present</span></div>
+      <ul>
+        <li>Delivered customer-focused service to 100+ customers daily with clear communication and responsive problem solving.</li>
+        <li>Adapted quickly to changing operational requirements, showing learning agility and reliable teamwork.</li>
+        <li>Supported onboarding and training of new team members, improving collaboration and efficiency.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">data_intern.exe</span><span class="meta">EXIT 0</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Data Analytics Intern</span><span class="co">Linked Things · Karachi</span><span class="dt">Jul 2021 – Aug 2021</span></div>
+      <ul>
+        <li>Independently built an algorithm to estimate refrigeration-system capacity from large operational datasets (power and temperature), applying physics domain knowledge — deployed at the client's site.</li>
+        <li>Ran data-quality checks and statistical techniques to find inefficiencies, delivering evidence-based insights to engineering stakeholders.</li>
+        <li>Used dashboards to monitor system performance across projects and communicate findings to technical teams.</li>
+        <li>Collaborated with engineering teams to validate data, resolve issues, and report against agreed quality standards.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">social.exe</span><span class="meta">EXIT 0</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Advertising &amp; Social Media Manager</span><span class="co">Sea Apparel · Karachi</span><span class="dt">Sep 2019 – Dec 2019</span></div>
+      <ul>
+        <li>Increased weekly social media engagement by 30% by developing targeted content strategies and optimising posting schedules against audience activity data.</li>
+        <li>Maintained a consistent brand identity across platforms, coordinating creative and copy so campaigns read as one voice.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">bank_intern.exe</span><span class="meta">EXIT 0</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Intern</span><span class="co">Faysal Bank · Karachi</span><span class="dt">Jun 2019 – Aug 2019</span></div>
+      <ul>
+        <li>Automated monthly and quarterly reporting using SQL and Excel, cutting preparation time substantially and removing repeated manual handling.</li>
+        <li>Supported predictive modelling for customer analysis and trend forecasting.</li>
+        <li>Improved reporting accuracy by designing standardised templates and dashboards that gave every cycle the same structure and checks.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="win">
+    <div class="titlebar"><span class="lights"><i class="l1"></i><i class="l2"></i><i class="l3"></i></span>
+      <span class="t">logistics.exe</span><span class="meta">EXIT 0</span></div>
+    <div class="body">
+      <div class="job-h"><span class="pos">Intern</span><span class="co">DB Schenker · Karachi</span><span class="dt">Jun 2018 – Aug 2018</span></div>
+      <ul>
+        <li>Coordinated logistics workflows across global supply teams to keep client deliveries on schedule.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="sec-head"><span class="num">04</span><h2>Skills</h2><span class="tag">// installed_packages</span></div>
+  <div class="skill-grid">
+    <div class="skill-cat">
+      <h3>Data Analysis &amp; Reporting</h3>
+      <div class="tags">
+        <span>SQL</span><span>Tableau</span><span>Power BI</span><span>Advanced Excel</span><span>Python</span>
+        <span>R</span><span>Pandas</span><span>NumPy</span><span>DuckDB</span><span>Dimensional modelling</span>
+        <span>Statistical analysis</span><span>Reporting automation</span><span>Dashboards</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>AI &amp; Machine Learning</h3>
+      <div class="tags">
+        <span>LLM integration</span><span>Google Gemini API</span>
+        <span>Predictive modelling</span><span>Forecasting</span><span>Prompt engineering</span><span>Token &amp; cost metering</span><span>scikit-learn</span>
+        <span>Naive Bayes</span><span>kNN</span><span>Recommender systems</span><span>Collaborative filtering</span><span>Ensemble models</span><span>Search algorithms</span>
+        <span>Qiskit</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Assurance &amp; Governance</h3>
+      <div class="tags">
+        <span>Anomaly detection</span><span>Control design</span><span>Audit trails</span>
+        <span>Data validation</span><span>Reconciliation checks</span><span>Data cleaning</span>
+        <span>Data integrity</span><span>Policy enforcement logic</span><span>Large-dataset analysis</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Software &amp; Engineering</h3>
+      <div class="tags">
+        <span>FastAPI</span><span>REST APIs</span><span>React</span><span>Vite</span>
+        <span>Streamlit</span><span>Parquet</span><span>Node.js</span><span>Git</span><span>Docker</span><span>AWS</span><span>Hadoop</span>
+        <span>Bitbucket</span><span>RStudio</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Programming Languages</h3>
+      <div class="tags">
+        <span>Python</span><span>SQL</span><span>Java</span><span>JavaScript</span><span>C</span>
+        <span>R</span><span>HTML</span><span>CSS</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Enterprise Platforms</h3>
+      <div class="tags">
+        <span>Salesforce CRM</span><span>Microsoft Copilot Studio</span>
+        <span>Oracle Service Cloud</span><span>Microsoft Power Platform</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Delivery &amp; Professional</h3>
+      <div class="tags">
+        <span>Agile / XP</span><span>Requirements analysis</span><span>Stakeholder engagement</span>
+        <span>Client presentations</span><span>Technical documentation</span><span>Problem solving</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Languages</h3>
+      <div class="tags">
+        <span>English</span><span>Urdu</span><span>Arabic</span>
+      </div>
     </div>
   </div>
 </section>
@@ -447,9 +593,10 @@
       <div class="lead-item">
         <span class="ic">[03]</span>
         <div class="lc">
-          <div class="r">Participant</div>
+          <div class="r">Events Sub-Committee</div>
           <div class="o">Network of Women · USYD</div>
-          <p>Built leadership and professional capability through structured mentorship programs and networking with senior industry professionals.</p>
+          <p>Helped plan and run events for the Society while building leadership and professional capability through structured mentorship programs and networking with senior industry professionals.</p>
+          <div class="dt">Aug 2024 – Dec 2024</div>
         </div>
       </div>
       <div class="lead-item">
@@ -469,7 +616,7 @@
   <h3>Let's build something.</h3>
   <div class="frow">
     <a class="chip" href="mailto:sabika.fatima.n@gmail.com">✉ Email me</a>
-    <a class="chip" href="www.linkedin.com/in/sabika-fatima-111b47216" target="_blank" rel="noopener">in · LinkedIn</a>
+    <a class="chip" href="https://www.linkedin.com/in/sabika-fatima-111b47216" target="_blank" rel="noopener">in · LinkedIn</a>
     <a class="chip" href="https://github.com/sabika-naqvi" target="_blank" rel="noopener">‹/› GitHub</a>
   </div>
   <p class="vis">Australian work rights held independently — no visa sponsorship required.</p>
@@ -502,12 +649,13 @@
   var boot=document.getElementById('boot');
   var log=document.getElementById('boot-log');
   var lines=[
-    'SABIKA.SYS v25.10 — booting...',
-    'loading modules: [sql] [power-bi] [python] [r] ........ OK',
+    'SABIKA.SYS v26.08 — booting...',
+    'loading modules: [sql] [python] [fastapi] [duckdb] [tableau] ........ OK',
     'mounting /datasets ........ OK',
     'verifying credentials: B.Sc Computer Science, USYD ........ <span class="ok">OK</span>',
-    'initialising analytics engine ........ OK',
+    'initialising analytics + governance engine ........ OK',
     'data integrity check ........ <span class="ok">PASSED</span>',
+    'audit log ........ <span class="ok">SEALED</span>',
     'launching profile <span class="ok">// Syeda Sabika Fatima</span>',
     'ready_'
   ];
@@ -530,7 +678,7 @@
 
   /* HERO TYPING */
   var cmd='whoami --verbose';
-  var out='Data analyst who turns complex datasets into clear, decision-ready stories.';
+  var out='Turns messy data into decision-ready answers, and builds the controls that keep them trustworthy.';
   var typedEl=document.getElementById('typed');
   var outEl=document.getElementById('typed-out');
   function typeCmd(){
